@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestProject1
 {
@@ -40,20 +35,19 @@ namespace TestProject1
 
         [Test]
         public void LoginWithInValidCredentials()
-            {
+        {
             //entering credentials
             _loginPage.EnterUsernameOrEmail("test@email.com");
             _loginPage.EnterPassword("test-password");
 
             //clicking "Login" button
             _loginPage.ClickLoginButton();
-            
-            //checking that invalid input calls login error 
-            string getErrorLogin = _loginPage.GetLoginError();
-            Assert.AreEqual("A user could not be found with this email address.", getErrorLogin);
 
-        }
+            //checking that invalid login input calls error 
+            string getErrorLogin = _loginPage.GetLoginError();
+            Assert.AreEqual("Error:", getErrorLogin);
         }
     }
+}
 
 

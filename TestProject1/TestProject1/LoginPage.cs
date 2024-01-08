@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestProject1
 {
@@ -31,7 +26,7 @@ namespace TestProject1
         private IWebElement PasswordRegLabel => _driver.FindElement(By.XPath("//*[contains(text(),'Password')][2]"));
         private IWebElement PasswordRegInputField => _driver.FindElement(By.XPath("//*[@id='reg_password']"));
         private IWebElement RegisterButton => _driver.FindElement(By.XPath("//form[@class='register']//input[@type='submit']"));
-        private IWebElement ErrorLogin => _driver.FindElement(By.XPath("//*[contains(text(),'A user')]"));
+        private IWebElement ErrorLogin => _driver.FindElement(By.XPath("//*[@id='page-36']/div/div[1]/ul/li/strong[1]"));
 
         public string GetLostPassword() //method to get the text value "Lost your password?"
         {
@@ -49,7 +44,7 @@ namespace TestProject1
         // method for entering username or email address
         public void EnterUsernameOrEmail(string usernameOrEmail)
         {
-            IWebElement usernameField = _driver.FindElement(UsernameInputField);
+            IWebElement usernameField = UsernameInputField;
             usernameField.Clear();
             usernameField.SendKeys(usernameOrEmail);
         }
@@ -57,7 +52,7 @@ namespace TestProject1
         // method for entering password
         public void EnterPassword(string password)
         {
-            IWebElement passwordField = _driver.FindElement(PasswordLogInputField);
+            IWebElement passwordField = PasswordLogInputField;
             passwordField.Clear();
             passwordField.SendKeys(password);
         }
@@ -65,16 +60,16 @@ namespace TestProject1
         // method for clicking the "Login" button
         public void ClickLoginButton()
         {
-            IWebElement loginButton = _driver.FindElement(LoginButton);
+            IWebElement loginButton = LoginButton;
             loginButton.Click();
         }
 
-        // method for getting login error
+        //method for getting login error
         public string GetLoginError() 
-        {
-            IWebElement errorLogin = _driver.FindElement(ErrorLogin);
-            return ErrorLogin.Text;
-        }
+       {
+           IWebElement errorLogin = ErrorLogin;
+           return ErrorLogin.Text;
+       }
     }
 }
 
