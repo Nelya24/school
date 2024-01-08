@@ -10,6 +10,8 @@ namespace TestProject1
     public class LoginPage
     {
         private IWebDriver _driver;
+        private By loginButtonLocator;
+
         public LoginPage(IWebDriver driver)
         {
             _driver = driver;
@@ -63,7 +65,7 @@ namespace TestProject1
         // method for clicking the "Login" button
         public void ClickLoginButton()
         {
-            IWebElement loginButton = _driver.FindElement(loginButtonLocator);
+            IWebElement loginButton = _driver.FindElement(LoginButton);
             loginButton.Click();
         }
 

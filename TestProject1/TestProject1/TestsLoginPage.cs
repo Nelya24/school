@@ -39,7 +39,7 @@ namespace TestProject1
         }
 
         [Test]
-        public void LoginWithValidCredentials()
+        public void LoginWithInValidCredentials()
             {
             //entering credentials
             _loginPage.EnterUsernameOrEmail("test@email.com");
