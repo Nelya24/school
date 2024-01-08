@@ -12,20 +12,13 @@ namespace TestProject1
         private IWebDriver _driver;
         private LoginPage _loginPage;
 
-        public Tests(LoginPage loginPage)
-
-        {
-
-            _loginPage = loginPage;
-        }
-
-
         [SetUp]
         public void Setup()
         {
             _driver = new OpenQA.Selenium.Chrome.ChromeDriver();
             _driver.Navigate().GoToUrl("https://practice.automationtesting.in/my-account/");
             _driver.Manage().Window.Maximize();
+            _loginPage = new LoginPage(_driver);
         }
         [Test]
 
@@ -42,7 +35,25 @@ namespace TestProject1
             // checking the text of the "Register" button
             string registerButtonText = _loginPage.GetRegisterSubmit();
             Assert.AreEqual("Register", registerButtonText);
+
+        }
+
+        [Test]
+        public void LoginWithValidCredentials()
+            {
+            //entering credentials
+            _loginPage.EnterUsernameOrEmail("test@email.com");
+            _loginPage.EnterPassword("test-password");
+
+            //clicking "Login" button
+            _loginPage.ClickLoginButton();
+            
+            //checking that invalid input calls login error 
+            string getErrorLogin = _loginPage.GetLoginError();
+            Assert.AreEqual("A user could not be found with this email address.", getErrorLogin);
+
+        }
         }
     }
-}
+
 
